@@ -1,5 +1,16 @@
 ﻿@page "/fetchdata"
-@inject HttpClient Http
+@*
+    /// <summary>
+    /// Nếu để ở bên view thì thêm đoạn code Directive này.
+    /// @Inject HttpClient Http
+    /// </summary>
+*@
+
+@* Nếu code behind khác tên thì mình gọi kế thừa đoạn code behind đó vào.
+    @inherits  @FetchData2
+*@
+
+
 
 <h1>Weather forecast</h1>
 
@@ -35,21 +46,25 @@ else
 }
 
 @code {
-    private WeatherForecast[] forecasts;
+    /// <summary>
+    /// Nếu có code behind thì có thể đưa cả đoạn code phía dưới sang class code behind.
+    /// </summary>
 
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-    }
+    //private WeatherForecast[] forecasts;
 
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+    //}
 
-        public int TemperatureC { get; set; }
+    //public class WeatherForecast
+    //{
+    //    public DateTime Date { get; set; }
 
-        public string Summary { get; set; }
+    //    public int TemperatureC { get; set; }
 
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+    //    public string Summary { get; set; }
+
+    //    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    //}
 }
