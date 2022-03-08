@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorApplication.API.DataContext;
 using BlazorApplication.API.Entities;
@@ -16,28 +16,12 @@ namespace BlazorApplication.API.Repositories
             _context = context;
         }
 
-        public async Task<PagedList<Entities.TaskEntities>> GetTaskList(TaskListSearch taskListSearch)
-        {
-            var query = _context.Tasks
-                .Include(x => x.Assignee).AsQueryable();
-
-            if (!string.IsNullOrEmpty(taskListSearch.Name))
-                query = query.Where(x => x.TaskName.Contains(taskListSearch.Name));
-
-            if (taskListSearch.AssigneeId.HasValue)
-                query = query.Where(x => x.AssigneeId == taskListSearch.AssigneeId.Value);
-
-            if (taskListSearch.Priority.HasValue)
-                query = query.Where(x => x.Priority == taskListSearch.Priority.Value);
-
-            var count = await query.CountAsync();
-
-            var data = await query.OrderByDescending(x => x.CreateDate)
-                .Skip((taskListSearch.PageNumber - 1) * taskListSearch.PageSize)
-                .Take(taskListSearch.PageSize)
+        public async Task<List<TaskEntities>> GetTaskList()
+        { 
+            var result = await _context.Tasks
+                .Include(x => x.Assignee)
                 .ToListAsync();
-            return new PagedList<TaskEntities>(data, count, taskListSearch.PageNumber, taskListSearch.PageSize);
-
+            return result;
         }
 
         public async Task<TaskEntities> Create(TaskEntities task)
@@ -64,30 +48,6 @@ namespace BlazorApplication.API.Repositories
         public async Task<TaskEntities> GetById(Guid id)
         {
             return await _context.Tasks.FindAsync(id);
-        }
-
-        public async Task<PagedList<TaskEntities>> GetTaskListByUserId(Guid userId, TaskListSearch taskListSearch)
-        {
-            var query = _context.Tasks
-                    .Where(x => x.AssigneeId == userId)
-                 .Include(x => x.Assignee).AsQueryable();
-
-            if (!string.IsNullOrEmpty(taskListSearch.Name))
-                query = query.Where(x => x.TaskName.Contains(taskListSearch.Name));
-
-            if (taskListSearch.AssigneeId.HasValue)
-                query = query.Where(x => x.AssigneeId == taskListSearch.AssigneeId.Value);
-
-            if (taskListSearch.Priority.HasValue)
-                query = query.Where(x => x.Priority == taskListSearch.Priority.Value);
-
-            var count = await query.CountAsync();
-
-            var data = await query.OrderByDescending(x => x.CreateDate)
-                .Skip((taskListSearch.PageNumber - 1) * taskListSearch.PageSize)
-                .Take(taskListSearch.PageSize)
-                .ToListAsync();
-            return new PagedList<TaskEntities>(data, count, taskListSearch.PageNumber, taskListSearch.PageSize);
         }
     }
 }

@@ -1,22 +1,20 @@
 ﻿using BlazorApplication.API.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Task = BlazorApplication.API.Entities.TaskEntities;
 
 namespace BlazorApplication.API.Repositories
 {
     public interface ITaskRepository
     {
-        Task<PagedList<TaskEntities>> GetTaskList(TaskListSearch taskListSearch);
+        Task<List<TaskEntities>> GetTaskList();
 
-        Task<PagedList<TaskEntities>> GetTaskListByUserId(Guid userId, TaskListSearch taskListSearch);
+        Task<TaskEntities> Create(TaskEntities task);
 
-        Task<Task> Create(TaskEntities task);
+        Task<TaskEntities> Update(TaskEntities task);
 
-        Task<Task> Update(TaskEntities task);
+        Task<TaskEntities> Delete(TaskEntities task);
 
-        Task<Task> Delete(TaskEntities task);
-
-        Task<Task> GetById(TaskEntities id);
+        Task<TaskEntities> GetById(Guid id);
     }
 }

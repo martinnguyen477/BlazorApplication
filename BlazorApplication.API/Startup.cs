@@ -39,8 +39,9 @@ namespace BlazorApplication.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlazorApplication.API", Version = "v1" });
             });
-            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITaskRepository, TaskRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

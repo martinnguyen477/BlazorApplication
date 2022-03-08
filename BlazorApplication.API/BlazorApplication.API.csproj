@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\BlazorApplication.Models\BlazorApplication.Models.csproj" />
   </ItemGroup>
 
 </Project>

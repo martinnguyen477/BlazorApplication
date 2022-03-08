@@ -11,7 +11,6 @@ namespace BlazorApplication.API.DataContext
         {
 
         }
-
         public DbSet<TaskEntities> Tasks { get; set; }
     }
 }

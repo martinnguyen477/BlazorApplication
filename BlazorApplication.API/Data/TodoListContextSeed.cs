@@ -3,10 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlazorApplication.API.DataContext;
 using BlazorApplication.API.Entities;
-using BlazorApplication.API.Enum;
+using BlazorApplication.Models.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-
 
 namespace BlazorApplication.API.Data
 {
