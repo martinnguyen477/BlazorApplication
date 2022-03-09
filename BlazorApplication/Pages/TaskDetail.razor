@@ -1,0 +1,35 @@
+﻿@page "/TaskDetail/{TaskId}"
+@using BlazorApplication.Components;
+
+@if (TaskDetails == null)
+{
+    <LoadingIndicator></LoadingIndicator>
+}
+else
+{
+    <h3>Task @TaskDetails.TaskName</h3>
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>@TaskDetails.TaskName</td>
+        </tr>
+        <tr>
+            <td>Assignee</td>
+            <td>@TaskDetails.AssigneeName</td>
+        </tr>
+        <tr>
+            <td>Create date</td>
+            <td>@TaskDetails.CreateDate.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td>Priority</td>
+            <td>@TaskDetails.Priority</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>@TaskDetails.Status</td>
+        </tr>
+    </table>
+}
+
+

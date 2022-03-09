@@ -26,10 +26,11 @@ namespace BlazorApplication.API.Controllers
         //{
         //    return await _taskRepository.GetTaskList();
         //}
+        //tasks/getall?name=cuong?fd
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] TaskListSearch taskListSearch)
         {
-            var result = await _taskRepository.GetTaskList();
+            var result = await _taskRepository.GetTaskList(taskListSearch);
             var resultDto = result.Select(x => new TaskDto()
             {
                 TaskId = x.TaskId,
@@ -40,7 +41,7 @@ namespace BlazorApplication.API.Controllers
                 AssigneeName = x.Assignee != null ? x.Assignee.FirstName + " " + x.Assignee.LastName : "N/A"
             }) ;
 
-            return Ok(result);
+            return Ok(resultDto);
         }
         [HttpPost]
         public async Task<IActionResult> CreateTask(TaskCreateRequest taskCreateRequest)
@@ -57,14 +58,14 @@ namespace BlazorApplication.API.Controllers
             return Ok(taskCreated);
         }
 
-        [HttpPost("{TaskId}")]
-        public async Task<IActionResult> UpdateTask(Guid TaskId, TaskUpdateRequest taskUpdateRequest)
+        [HttpPost("{taskId}")]
+        public async Task<IActionResult> UpdateTask(Guid taskId, TaskUpdateRequest taskUpdateRequest)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var taskbyId =await _taskRepository.GetById(TaskId);
+            var taskbyId =await _taskRepository.GetById(taskId);
 
-            if (taskbyId == null) return NotFound($"{TaskId} not found");
+            if (taskbyId == null) return NotFound($"{taskId} not found");
 
             taskbyId.TaskName = taskUpdateRequest.Name;
             taskbyId.Priority = taskUpdateRequest.Priority;
@@ -82,11 +83,11 @@ namespace BlazorApplication.API.Controllers
             });
         }
         [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
+        [Route("{taskId}")]
+        public async Task<IActionResult> DeleteTask([FromRoute] Guid taskId)
         {
-            var task = await _taskRepository.GetById(id);
-            if (task == null) return NotFound($"{id} is not found");
+            var task = await _taskRepository.GetById(taskId);
+            if (task == null) return NotFound($"{taskId} is not found");
 
             var taskDeleted = await _taskRepository.Delete(task);
             return Ok(new TaskDto()
@@ -100,7 +101,7 @@ namespace BlazorApplication.API.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet("{taskId}")]
         public async Task<IActionResult> GetById(Guid taskId)
         {
             var taskById = await _taskRepository.GetById(taskId);
