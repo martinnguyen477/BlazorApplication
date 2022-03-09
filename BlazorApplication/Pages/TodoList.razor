@@ -11,7 +11,7 @@
 else
 {
 <div class="row">
-    <EditForm Model="@taskListSearch" OnSubmit="@SearchForm" >
+    <EditForm Model="@taskListSearch" OnSubmit="@SearchForm">
         <div class="row">
             <div class="col">
                 <label>Name</label>
@@ -36,15 +36,16 @@ else
                 </InputSelect>
             </div>
             <div class="col">
-                <button class="form-control" type="submit">Search</button>
+                <button class="form-control btn btn-primary" type="submit">Search</button>
+            </div>
+            <div class="col">
+                <a href="/taskCreate" class=" btn btn-success"> Create</a>
             </div>
         </div>
-        
+
     </EditForm>
 
-
 </div>
-
     <div class="row mt-4">
         <table class="table">
             <thead>

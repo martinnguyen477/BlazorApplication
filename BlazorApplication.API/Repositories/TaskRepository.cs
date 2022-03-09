@@ -36,7 +36,7 @@ namespace BlazorApplication.API.Repositories
                 result = result.Where(x => x.Priority == taskListSearch.Priority.Value);
             }
 
-            return await result.ToListAsync();
+            return await result.OrderByDescending(x => x.CreateDate).ToListAsync();
         }
 
         public async Task<TaskEntities> Create(TaskEntities task)

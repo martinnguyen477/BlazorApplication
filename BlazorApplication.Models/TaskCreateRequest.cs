@@ -13,6 +13,6 @@ namespace BlazorApplication.Models
         public string TaskName { get; set; }
 
         [Required(ErrorMessage = "Please select your task priority")]
-        public Priority Priority { get; set; }
+        public Priority? Priority { get; set; }
     }
 }

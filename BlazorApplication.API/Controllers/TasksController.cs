@@ -44,14 +44,14 @@ namespace BlazorApplication.API.Controllers
             return Ok(resultDto);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTask(TaskCreateRequest taskCreateRequest)
+        public async Task<IActionResult> CreateTask([FromBody] TaskCreateRequest taskCreateRequest)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var taskCreated = await _taskRepository.Create(new TaskEntities() { 
                 TaskId = taskCreateRequest.Id,
                 TaskName = taskCreateRequest.TaskName,
-                Priority = taskCreateRequest.Priority,
+                Priority = taskCreateRequest.Priority.HasValue ? taskCreateRequest.Priority.Value : Priority.Low,
                 Status = Status.Open,
                 CreateDate = DateTime.Now
             });

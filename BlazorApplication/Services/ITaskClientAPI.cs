@@ -9,5 +9,7 @@ namespace BlazorApplication.Services
         Task<List<TaskDto>> GetTaskList(TaskListSearch taskListSearch);
 
         Task<TaskDto> GetTaskById(string taskId);
+
+        Task<bool> CreateTask(TaskCreateRequest taskCreateRequest);
     }
 }

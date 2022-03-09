@@ -1,8 +1,8 @@
-﻿using BlazorApplication.Models;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorApplication.Models;
+using System.Collections.Generic;
 
 namespace BlazorApplication.Services
 {
@@ -13,6 +13,12 @@ namespace BlazorApplication.Services
         public TaskClientAPI(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<bool> CreateTask(TaskCreateRequest taskCreateRequest)
+        {
+            var result =await _httpClient.PostAsJsonAsync("/api/Tasks/CreateTask", taskCreateRequest);
+            return result.IsSuccessStatusCode;
         }
 
         public async Task<TaskDto> GetTaskById(string taskId)
