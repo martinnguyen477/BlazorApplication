@@ -21,6 +21,9 @@ namespace BlazorApplication.Pages
                 navigationManager.NavigateTo("/TaskList");
             }     
         }
+
+        //CUong
+        //Update 2
     }
     
 }

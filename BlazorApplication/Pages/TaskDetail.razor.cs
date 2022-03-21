@@ -22,4 +22,5 @@ namespace BlazorApplication.Pages
             TaskDetails = await taskClientAPI.GetTaskById(TaskId);
         }
     }
+    //Update
 }
