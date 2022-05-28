@@ -1,5 +1,5 @@
-﻿using System;
-using BlazorApplication.Models.Enum;
+﻿using BlazorApplication.Models.Enum;
+using System;
 
 namespace BlazorApplication.Models
 {

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorApplication.API.DataContext;
+﻿using BlazorApplication.API.DataContext;
 using BlazorApplication.API.Entities;
 using BlazorApplication.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlazorApplication.API.Repositories
 {

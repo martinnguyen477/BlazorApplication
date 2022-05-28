@@ -1,8 +1,8 @@
-﻿using System.Net.Http;
+﻿using BlazorApplication.Models;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using BlazorApplication.Models;
-using System.Collections.Generic;
 
 namespace BlazorApplication.Services
 {
