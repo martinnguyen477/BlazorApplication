@@ -6,46 +6,44 @@
 
 @if (tasks == null || taskListSearch == null)
 {
-    <LoadingIndicator></LoadingIndicator> 
+    <LoadingIndicator></LoadingIndicator>
 }
 else
 {
-<div class="row">
-    <EditForm Model="@taskListSearch" OnSubmit="@SearchForm">
-        <div class="row">
-            <div class="col">
-                <label>Name</label>
-                <InputText class="form-control" @bind-Value="@taskListSearch.Name"></InputText>
+    <div class="row">
+        <EditForm Model="@taskListSearch" OnSubmit="@SearchForm">
+            <div class="row">
+                <div class="col">
+                    <label>Name</label>
+                    <InputText class="form-control" @bind-Value="@taskListSearch.Name"></InputText>
+                </div>
+                <div class="col">
+                    <label>Assignee</label>
+                    <InputSelect class="form-control" @bind-Value="@taskListSearch.AssignId">
+                        @foreach (var assignee in AssigneeList)
+                            {
+                            <option value="@assignee.Id">@assignee.FullName</option>
+                            }
+                    </InputSelect>
+                </div>
+                <div class="col">
+                    <label>Priority</label>
+                    <InputSelect class="form-control" @bind-Value="@taskListSearch.Priority">
+                        @foreach (string priority in Enum.GetNames(typeof(Priority)))
+                            {
+                            <option value="@priority"> @priority</option>
+                            }
+                    </InputSelect>
+                </div>
+                <div class="col">
+                    <button class="form-control btn btn-primary" type="submit">Search</button>
+                </div>
+                <div class="col">
+                    <a href="/taskCreate" class=" btn btn-success"> Create</a>
+                </div>
             </div>
-            <div class="col">
-                <label>Assignee</label>
-                <InputSelect class="form-control" @bind-Value="@taskListSearch.AssignId">
-                    @foreach (var assignee in AssigneeList)
-                        {
-                        <option value="@assignee.Id">@assignee.FullName</option>
-                        }
-                </InputSelect>
-            </div>
-            <div class="col">
-                <label>Priority</label>
-                <InputSelect class="form-control" @bind-Value="@taskListSearch.Priority">
-                    @foreach (string priority in Enum.GetNames(typeof(Priority)))
-                        {
-                        <option value="@priority"> @priority</option>
-                        }
-                </InputSelect>
-            </div>
-            <div class="col">
-                <button class="form-control btn btn-primary" type="submit">Search</button>
-            </div>
-            <div class="col">
-                <a href="/taskCreate" class=" btn btn-success"> Create</a>
-            </div>
-        </div>
-
-    </EditForm>
-
-</div>
+        </EditForm>
+    </div>
     <div class="row mt-4">
         <table class="table">
             <thead>
@@ -77,7 +75,7 @@ else
                         <td>@item.AssigneeName</td>
                         <td>@item.CreateDate.ToString("dd/MM/yyyy")</td>
                         <td>@item.Status</td>
-                        <td> 
+                        <td>
                             <a href="/TaskDetail/@item.TaskId">Detail</a>
                         </td>
                     </tr>

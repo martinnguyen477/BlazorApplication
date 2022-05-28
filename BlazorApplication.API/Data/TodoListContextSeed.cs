@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorApplication.API.DataContext;
+﻿using BlazorApplication.API.DataContext;
 using BlazorApplication.API.Entities;
 using BlazorApplication.Models.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlazorApplication.API.Data
 {

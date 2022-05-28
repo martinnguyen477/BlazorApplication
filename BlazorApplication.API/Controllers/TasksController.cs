@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorApplication.API.Entities;
+﻿using BlazorApplication.API.Entities;
 using BlazorApplication.API.Repositories;
 using BlazorApplication.Models;
 using BlazorApplication.Models.Enum;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BlazorApplication.API.Controllers
 {

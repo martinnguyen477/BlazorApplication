@@ -7,11 +7,5 @@ namespace BlazorApplication.API.Repositories
     public interface IUserRepository
     {
         Task<List<UserEntities>> GetUserList();
-        //test2
-        //test
-        //test3
-        //test4
-        //test6
-        //test 5
     }
 }
