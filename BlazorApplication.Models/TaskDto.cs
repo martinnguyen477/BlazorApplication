@@ -18,11 +18,5 @@ namespace BlazorApplication.Models
         public Priority Priority { get; set; }
 
         public Status Status { get; set; }
-
-        //test conflict 5
-
-        //test conflict 6
-
-        //test conflict 7
     }
 }
