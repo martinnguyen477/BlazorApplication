@@ -22,7 +22,5 @@ namespace BlazorApplication.Models
         //test conflict 5
 
         //test conflict 6
-
-        //test conflict 7
     }
 }
