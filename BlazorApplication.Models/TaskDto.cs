@@ -18,7 +18,10 @@ namespace BlazorApplication.Models
         public Priority Priority { get; set; }
 
         public Status Status { get; set; }
-        //test rebase develop
+        //fix conflict
+
+	   //test rebase develop
+
 
         //test rebase develop 2
     }
